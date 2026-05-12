@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MoLA: From Imagined Futures to Executable Actions, ICML 2026 project page.">
+  <title>MoLA | From Imagined Futures to Executable Actions</title>
+  <style>
+    :root {
+      --ink: #18222c;
+      --muted: #5e6a76;
+      --line: #d8dee3;
+      --paper: #fbfcfb;
+      --soft: #eef5f1;
+      --teal: #2d9aa3;
+      --green: #53b87a;
+      --amber: #efb84a;
+      --rose: #d97171;
+      --shadow: 0 18px 48px rgba(24, 34, 44, 0.12);
+      --radius: 8px;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(216, 222, 227, 0.72);
+      background: rgba(251, 252, 251, 0.9);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a {
+      padding: 7px 10px;
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .navlinks a:hover {
+      color: var(--ink);
+      background: var(--soft);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 74vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #e9f0ed;
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.22;
+      filter: saturate(0.95) contrast(1.05);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(251, 252, 251, 0.95), rgba(251, 252, 251, 0.78) 48%, rgba(251, 252, 251, 0.88)),
+        linear-gradient(180deg, rgba(251, 252, 251, 0.25), rgba(251, 252, 251, 0.98));
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1040px, calc(100% - 32px));
+      padding: 72px 0 64px;
+      text-align: center;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border: 1px solid rgba(45, 154, 163, 0.32);
+      border-radius: 999px;
+      background: rgba(238, 245, 241, 0.72);
+      color: #1f6d72;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 18px auto 18px;
+      font-size: clamp(36px, 6vw, 76px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin: 0 auto 26px;
+      max-width: 860px;
+      color: #394650;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+
+    .authors {
+      max-width: 920px;
+      margin: 0 auto;
+      font-size: 17px;
+      color: #24313b;
+    }
+
+    .affiliations {
+      margin: 12px auto 0;
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--ink);
+      font-weight: 760;
+      box-shadow: 0 8px 20px rgba(24, 34, 44, 0.06);
+    }
+
+    .button:hover {
+      border-color: rgba(45, 154, 163, 0.45);
+      transform: translateY(-1px);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 74px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .abstract {
+      max-width: 920px;
+      font-size: 18px;
+      color: #2b3741;
+    }
+
+    .method-grid {
+      display: grid;
+      gap: 26px;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .figure-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .figure-panel img {
+      width: 100%;
+      background: white;
+    }
+
+    figcaption {
+      padding: 18px 20px 20px;
+      color: #3d4852;
+      font-size: 15px;
+      line-height: 1.55;
+      border-top: 1px solid var(--line);
+    }
+
+    figcaption strong {
+      color: var(--ink);
+    }
+
+    .video-feature {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #0e1519;
+      box-shadow: var(--shadow);
+    }
+
+    .video-frame video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #0e1519;
+    }
+
+    .video-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+    }
+
+    .video-card video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #11191d;
+    }
+
+    .video-card h3 {
+      margin: 0;
+      padding: 13px 14px 2px;
+      font-size: 15px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .video-card p {
+      margin: 0;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: white;
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 8px;
+      color: var(--teal);
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .table-stack {
+      display: grid;
+      gap: 28px;
+    }
+
+    .result-table {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 12px 30px rgba(24, 34, 44, 0.07);
+    }
+
+    .table-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(238, 245, 241, 0.9), rgba(255, 255, 255, 0.9));
+    }
+
+    .table-title h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .table-title span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #edf0f2;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      color: #40505c;
+      background: #f7faf8;
+      font-weight: 780;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tr.ours td {
+      color: #113c3f;
+      background: rgba(83, 184, 122, 0.13);
+      font-weight: 800;
+    }
+
+    .citation {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #17202a;
+      color: #eef5f1;
+      padding: 18px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    footer {
+      padding: 34px 0 54px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding: 58px 0 50px;
+      }
+
+      .video-grid,
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#">MoLA</a>
+      <div class="navlinks">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#videos">Videos</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#citation">BibTeX</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Paper title">
+    <video autoplay muted loop playsinline poster="assets/posters/20260512_155544.jpg">
+      <source src="video_realworld/20260512_155544.mp4" type="video/mp4">
+    </video>
+    <div class="hero-inner">
+      <div class="venue">Accepted to ICML 2026</div>
+      <h1>From Imagined Futures to Executable Actions</h1>
+      <p class="subtitle">Mixture of Latent Actions for Robot Manipulation</p>
+      <p class="authors">
+        Yajie Li*<sup>1,2</sup>, Bozhou Zhang*<sup>1,2</sup>, Chun Gu<sup>1,2</sup>, Zipei Ma<sup>1,2</sup>,
+        Jiahui Zhang<sup>1,2</sup>, Jiankang Deng<sup>3</sup>, Xiatian Zhu<sup>4</sup>, Li Zhang<sup>1,2</sup>
+      </p>
+      <p class="affiliations">
+        <sup>1</sup>School of Data Science, Fudan University &nbsp;
+        <sup>2</sup>Shanghai Innovation Institute &nbsp;
+        <sup>3</sup>Imperial College London &nbsp;
+        <sup>4</sup>University of Surrey<br>
+        * Equal contribution
+      </p>
+      <div class="links" aria-label="Paper links">
+        <a class="button" href="https://arxiv.org/search/?query=From+Imagined+Futures+to+Executable+Actions%3A+Mixture+of+Latent+Actions+for+Robot+Manipulation&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50" rel="noreferrer">arXiv</a>
+        <a class="button" href="https://github.com/LogosRoboticsGroup/MoLA" rel="noreferrer">GitHub</a>
+        <a class="button" href="https://huggingface.co/LogosRoboticsGroup/MoLA" rel="noreferrer">Hugging Face</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="abstract">
+      <div class="section-heading">
+        <div class="kicker">Abstract</div>
+        <h2>Action-space grounding for imagined futures.</h2>
+      </div>
+      <p class="abstract">
+        Video generation models offer a promising imagination mechanism for robot manipulation by predicting long-horizon future observations, but effectively exploiting these imagined futures for action execution remains challenging. Existing approaches either condition policies on predicted frames or directly decode generated videos into actions, both suffering from a mismatch between visual realism and control relevance. As a result, predicted observations emphasize perceptual fidelity rather than action-centric causes of state transitions, leading to indirect and unstable control. To address this gap, we propose MoLA (Mixture of Latent Actions), a control-oriented interface that transforms imagined future videos into executable representations. Instead of passing predicted frames directly to the policy, MoLA leverages a mixture of pretrained inverse dynamics models to infer a mixture of latent actions implied by generated visual transitions. These modality-aware inverse dynamics models capture complementary semantic, depth, and flow cues, providing a structured and physically grounded action representation that bridges video imagination and policy execution. We evaluate our approach on simulated benchmarks (LIBERO, CALVIN, and LIBERO-Plus) and real-world robot manipulation tasks, achieving consistent gains in task success, temporal consistency, and generalization.
+      </p>
+    </section>
+
+    <section id="method">
+      <div class="section-heading">
+        <div class="kicker">Method</div>
+        <h2>From video imagination to executable latent actions.</h2>
+        <p class="lead">MoLA converts predicted visual futures into action-centric representations with a mixture of modality-aware inverse dynamics models, then decodes the inferred latent actions into robot controls.</p>
+      </div>
+      <div class="method-grid">
+        <figure class="figure-panel">
+          <img src="assets/method-figure-1.png" alt="Comparison among VLA models, Video-Action models, and MoLA.">
+          <figcaption><strong>Figure 1.</strong> MoLA differs from direct VLA policies and Video-Action pipelines by inserting a latent-action interface between video imagination and execution. The mixture of inverse dynamics models infers actions implied by generated visual transitions, providing a control-oriented bridge to the action head.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <img src="assets/method-figure-2.png" alt="Overview of MoLA pretraining and fine-tuning.">
+          <figcaption><strong>Figure 2.</strong> During pretraining, flow-aware, semantic-aware, and depth-aware inverse dynamics models learn discrete latent actions from current and future frames. During fine-tuning, the frozen video generation model imagines future rollouts, MoIDM extracts a mixture of latent actions, and the action head generates executable action sequences.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="videos">
+      <div class="section-heading">
+        <div class="kicker">Visualization Videos</div>
+        <h2>Rollouts on real-world and simulated tasks.</h2>
+        <p class="lead">The videos below are loaded from this repository and cover the real robot setup plus CALVIN, LIBERO, and LIBERO-Plus benchmark examples.</p>
+      </div>
+
+      <div class="video-feature">
+        <div class="video-frame">
+          <video controls preload="metadata" poster="assets/posters/20260512_155544.jpg">
+            <source src="video_realworld/20260512_155544.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="video-caption">Real-world UR5e manipulation rollout.</p>
+      </div>
+
+      <div class="video-grid">
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/calvin_go_push_the_pink_block_left.jpg">
+            <source src="video_benchmark/calvin/calvin_go%20push%20the%20pink%20block%20left.mp4" type="video/mp4">
+          </video>
+          <h3>CALVIN</h3>
+          <p>Push the pink block left.</p>
+        </article>
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/calvin_pull_the_handle_to_open_the_drawer.jpg">
+            <source src="video_benchmark/calvin/calvin_pull%20the%20handle%20to%20open%20the%20drawer.mp4" type="video/mp4">
+          </video>
+          <h3>CALVIN</h3>
+          <p>Pull the handle to open the drawer.</p>
+        </article>
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/libero_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.jpg">
+            <source src="video_benchmark/libero/libero_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.mp4" type="video/mp4">
+          </video>
+          <h3>LIBERO</h3>
+          <p>Put the alphabet soup and cream cheese box in the basket.</p>
+        </article>
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/libero_turn_on_the_stove_and_put_the_moka_pot_on_it.jpg">
+            <source src="video_benchmark/libero/libero_turn_on_the_stove_and_put_the_moka_pot_on_it.mp4" type="video/mp4">
+          </video>
+          <h3>LIBERO</h3>
+          <p>Turn on the stove and put the moka pot on it.</p>
+        </article>
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/libero_plus_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.jpg">
+            <source src="video_benchmark/libero_plus/libero_plus_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.mp4" type="video/mp4">
+          </video>
+          <h3>LIBERO-Plus</h3>
+          <p>Put the black bowl in the bottom drawer and close it.</p>
+        </article>
+        <article class="video-card">
+          <video controls preload="metadata" poster="assets/posters/libero_plus_turn_on_the_stove_and_put_the_moka_pot_on_it.jpg">
+            <source src="video_benchmark/libero_plus/libero_plus_turn_on_the_stove_and_put_the_moka_pot_on_it.mp4" type="video/mp4">
+          </video>
+          <h3>LIBERO-Plus</h3>
+          <p>Turn on the stove and put the moka pot on it.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="benchmarks">
+      <div class="section-heading">
+        <div class="kicker">Benchmark Results</div>
+        <h2>Consistent gains across three manipulation benchmarks.</h2>
+        <p class="lead">MoLA achieves the best reported average performance on CALVIN ABC-D, LIBERO, and LIBERO-Plus in the main experimental tables.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <small>CALVIN ABC-D</small>
+          <strong>4.55</strong>
+          <span>Avg. length</span>
+        </div>
+        <div class="stat">
+          <small>LIBERO</small>
+          <strong>97.0%</strong>
+          <span>Average success</span>
+        </div>
+        <div class="stat">
+          <small>LIBERO-Plus</small>
+          <strong>92.7%</strong>
+          <span>Average success</span>
+        </div>
+      </div>
+
+      <div class="table-stack">
+        <article class="result-table">
+          <div class="table-title">
+            <h3>CALVIN ABC-D</h3>
+            <span>Task completed in a row; higher is better</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>Avg. Len.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>3D Diffusor Actor</td><td>92.2</td><td>78.7</td><td>63.9</td><td>51.2</td><td>41.2</td><td>3.27</td></tr>
+                <tr><td>OpenVLA</td><td>91.3</td><td>77.8</td><td>62.0</td><td>52.1</td><td>43.5</td><td>3.27</td></tr>
+                <tr><td>UniVLA</td><td>95.5</td><td>85.8</td><td>75.4</td><td>66.9</td><td>56.5</td><td>3.80</td></tr>
+                <tr><td>pi_0</td><td>93.8</td><td>85.0</td><td>76.7</td><td>68.1</td><td>59.9</td><td>3.84</td></tr>
+                <tr><td>pi_0.5</td><td>94.8</td><td>87.4</td><td>78.2</td><td>71.7</td><td>64.3</td><td>3.97</td></tr>
+                <tr><td>GR00T N1</td><td>94.2</td><td>86.1</td><td>79.6</td><td>73.9</td><td>66.8</td><td>4.01</td></tr>
+                <tr><td>CLOVER</td><td>96.0</td><td>83.5</td><td>70.8</td><td>57.5</td><td>45.4</td><td>3.53</td></tr>
+                <tr><td>UP-VLA</td><td>92.8</td><td>86.5</td><td>81.5</td><td>76.9</td><td>69.9</td><td>4.08</td></tr>
+                <tr><td>Seer</td><td>96.3</td><td>91.6</td><td>86.1</td><td>80.3</td><td>74.0</td><td>4.28</td></tr>
+                <tr><td>VPP</td><td>96.5</td><td>90.9</td><td>86.6</td><td>82.0</td><td>76.9</td><td>4.33</td></tr>
+                <tr><td>DreamVLA</td><td>98.2</td><td>94.6</td><td>89.5</td><td>83.4</td><td>78.1</td><td>4.44</td></tr>
+                <tr class="ours"><td>MoLA (Ours)</td><td>98.5</td><td>95.0</td><td>91.1</td><td>88.1</td><td>82.6</td><td>4.55</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="result-table">
+          <div class="table-title">
+            <h3>LIBERO</h3>
+            <span>Success rate (%)</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Spatial</th>
+                  <th>Object</th>
+                  <th>Goal</th>
+                  <th>Long</th>
+                  <th>Avg.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Octo</td><td>78.9</td><td>85.7</td><td>84.6</td><td>51.1</td><td>75.1</td></tr>
+                <tr><td>OpenVLA</td><td>84.7</td><td>88.4</td><td>79.2</td><td>53.7</td><td>76.5</td></tr>
+                <tr><td>SpatialVLA</td><td>88.2</td><td>89.9</td><td>78.6</td><td>55.5</td><td>78.1</td></tr>
+                <tr><td>CoT-VLA</td><td>81.1</td><td>87.5</td><td>91.6</td><td>87.6</td><td>87.0</td></tr>
+                <tr><td>VPP</td><td>85.0</td><td>95.0</td><td>92.0</td><td>91.5</td><td>90.9</td></tr>
+                <tr class="ours"><td>MoLA (Ours)</td><td>93.0</td><td>99.5</td><td>99.5</td><td>96.0</td><td>97.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="result-table">
+          <div class="table-title">
+            <h3>LIBERO-Plus</h3>
+            <span>Success rate (%)</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Spatial</th>
+                  <th>Object</th>
+                  <th>Goal</th>
+                  <th>Long</th>
+                  <th>Avg.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>OpenVLA</td><td>19.4</td><td>14.0</td><td>15.1</td><td>14.3</td><td>15.6</td></tr>
+                <tr><td>WorldVLA</td><td>32.5</td><td>28.6</td><td>31.8</td><td>8.2</td><td>25.0</td></tr>
+                <tr><td>NORA</td><td>47.6</td><td>34.4</td><td>38.8</td><td>36.3</td><td>39.0</td></tr>
+                <tr><td>UniVLA</td><td>55.5</td><td>36.7</td><td>40.7</td><td>39.9</td><td>42.9</td></tr>
+                <tr><td>pi_0</td><td>60.7</td><td>61.4</td><td>44.9</td><td>48.4</td><td>53.6</td></tr>
+                <tr><td>pi_0-Fast</td><td>74.4</td><td>72.7</td><td>57.5</td><td>43.4</td><td>61.6</td></tr>
+                <tr><td>RIPT-VLA</td><td>85.8</td><td>64.3</td><td>58.0</td><td>67.5</td><td>68.4</td></tr>
+                <tr><td>OpenVLA-OFT</td><td>84.0</td><td>66.5</td><td>63.0</td><td>66.4</td><td>69.6</td></tr>
+                <tr><td>OpenVLA-OFT+</td><td>86.1</td><td>84.5</td><td>70.7</td><td>77.7</td><td>79.5</td></tr>
+                <tr class="ours"><td>MoLA (Ours)</td><td>97.5</td><td>96.3</td><td>85.1</td><td>91.8</td><td>92.7</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="citation">
+      <div class="section-heading">
+        <div class="kicker">BibTeX</div>
+        <h2>Citation</h2>
+      </div>
+      <pre class="citation">@inproceedings{li2026imaginedfutures,
+  title = {From Imagined Futures to Executable Actions: Mixture of Latent Actions for Robot Manipulation},
+  author = {Li, Yajie and Zhang, Bozhou and Gu, Chun and Ma, Zipei and Zhang, Jiahui and Deng, Jiankang and Zhu, Xiatian and Zhang, Li},
+  booktitle = {Forty-third International Conference on Machine Learning},
+  year = {2026}
+}</pre>
+    </section>
+  </main>
+
+  <footer>
+    MoLA project page for ICML 2026.
+  </footer>
+</body>
+</html>
