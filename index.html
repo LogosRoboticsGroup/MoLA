@@ -253,6 +253,17 @@
       gap: 26px;
     }
 
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .benchmark-figure {
+      margin-bottom: 26px;
+    }
+
     figure {
       margin: 0;
     }
@@ -347,7 +358,7 @@
 
     .stat-row {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
       margin-bottom: 26px;
     }
@@ -489,7 +500,8 @@
       }
 
       .video-grid,
-      .stat-row {
+      .stat-row,
+      .figure-grid {
         grid-template-columns: 1fr;
       }
 
@@ -533,7 +545,7 @@
         * Equal contribution
       </p>
       <div class="links" aria-label="Paper links">
-        <a class="button" href="https://arxiv.org/search/?query=From+Imagined+Futures+to+Executable+Actions%3A+Mixture+of+Latent+Actions+for+Robot+Manipulation&amp;searchtype=all&amp;abstracts=show&amp;order=-announced_date_first&amp;size=50" rel="noreferrer">arXiv</a>
+        <a class="button" href="https://arxiv.org/abs/2605.12167" rel="noreferrer">arXiv</a>
         <a class="button" href="https://github.com/LogosRoboticsGroup/MoLA" rel="noreferrer">GitHub</a>
         <a class="button" href="https://huggingface.co/LogosRoboticsGroup/MoLA" rel="noreferrer">Hugging Face</a>
       </div>
@@ -634,9 +646,14 @@
     <section id="benchmarks">
       <div class="section-heading">
         <div class="kicker">Benchmark Results</div>
-        <h2>Consistent gains across three manipulation benchmarks.</h2>
-        <p class="lead">MoLA achieves the best reported average performance on CALVIN ABC-D, LIBERO, and LIBERO-Plus in the main experimental tables.</p>
+        <h2>Consistent gains across benchmarks and real robots.</h2>
+        <p class="lead">MoLA achieves the best reported average performance on CALVIN ABC-D, LIBERO, and LIBERO-Plus, and improves over OpenVLA and VPP in the real-world UR5e setting.</p>
       </div>
+
+      <figure class="figure-panel benchmark-figure">
+        <img src="assets/experiment-figure-3.png" alt="Experimental environments for LIBERO, CALVIN, LIBERO-Plus, and real-world UR5e robot.">
+        <figcaption><strong>Figure 3.</strong> Experiments cover CALVIN ABC-D, LIBERO, and LIBERO-Plus in simulation, plus a real-world UR5e setup with tabletop manipulation tasks and distribution-shift evaluations.</figcaption>
+      </figure>
 
       <div class="stat-row">
         <div class="stat">
@@ -652,6 +669,11 @@
         <div class="stat">
           <small>LIBERO-Plus</small>
           <strong>92.7%</strong>
+          <span>Average success</span>
+        </div>
+        <div class="stat">
+          <small>Real-world UR5e</small>
+          <strong>73.0%</strong>
           <span>Average success</span>
         </div>
       </div>
@@ -714,7 +736,7 @@
                 <tr><td>Octo</td><td>78.9</td><td>85.7</td><td>84.6</td><td>51.1</td><td>75.1</td></tr>
                 <tr><td>OpenVLA</td><td>84.7</td><td>88.4</td><td>79.2</td><td>53.7</td><td>76.5</td></tr>
                 <tr><td>SpatialVLA</td><td>88.2</td><td>89.9</td><td>78.6</td><td>55.5</td><td>78.1</td></tr>
-                <tr><td>CoT-VLA</td><td>81.1</td><td>87.5</td><td>91.6</td><td>87.6</td><td>87.0</td></tr>
+                <tr><td>CoT-VLA</td><td>87.5</td><td>91.6</td><td>87.6</td><td>69.0</td><td>83.9</td></tr>
                 <tr><td>VPP</td><td>85.0</td><td>95.0</td><td>92.0</td><td>91.5</td><td>90.9</td></tr>
                 <tr class="ours"><td>MoLA (Ours)</td><td>93.0</td><td>99.5</td><td>99.5</td><td>96.0</td><td>97.0</td></tr>
               </tbody>
@@ -754,6 +776,49 @@
             </table>
           </div>
         </article>
+
+        <article class="result-table">
+          <div class="table-title">
+            <h3>Real-world UR5e Robot</h3>
+            <span>Success rate (%)</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="2">In-distribution</th>
+                  <th colspan="2">Out-of-distribution</th>
+                  <th rowspan="2">Avg.</th>
+                </tr>
+                <tr>
+                  <th>Place bottle</th>
+                  <th>Grab bowl</th>
+                  <th>Distracting objects</th>
+                  <th>Lighting changes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Diffusion Policy</td><td>44.0</td><td>56.0</td><td>28.0</td><td>38.0</td><td>41.5</td></tr>
+                <tr><td>OpenVLA</td><td>52.0</td><td>46.0</td><td>24.0</td><td>30.0</td><td>38.0</td></tr>
+                <tr><td>pi_0.5</td><td>82.0</td><td>90.0</td><td>64.0</td><td>74.0</td><td>77.5</td></tr>
+                <tr><td>VPP</td><td>66.0</td><td>72.0</td><td>52.0</td><td>58.0</td><td>62.0</td></tr>
+                <tr class="ours"><td>MoLA (Ours)</td><td>76.0</td><td>92.0</td><td>60.0</td><td>64.0</td><td>73.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="figure-panel">
+          <img src="assets/data-efficiency-figure-4.png" alt="Data efficiency comparison between VPP and MoLA on CALVIN ABC-D.">
+          <figcaption><strong>Figure 4.</strong> MoLA remains stronger than VPP across 10%, 20%, 50%, and 100% CALVIN fine-tuning data regimes, with the largest gains in low-data settings.</figcaption>
+        </figure>
+        <figure class="figure-panel">
+          <img src="assets/moidm-ablation-figure-5.png" alt="Ablation studies for MoIDM pretraining and fine-tuning.">
+          <figcaption><strong>Figure 5.</strong> MoIDM pretraining and downstream fine-tuning both improve performance, supporting the latent-action interface as the key bridge from imagined futures to execution.</figcaption>
+        </figure>
       </div>
     </section>
 
