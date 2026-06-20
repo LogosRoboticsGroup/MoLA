@@ -1,0 +1,31 @@
+_target_: policy_models.m_former.latent_motion_tokenizer.LatentMotionTokenizer
+codebook_embed_dim: 32
+m_former_hidden_size: 768
+
+m_former:
+  _target_: policy_models.m_former.m_former.MFormer
+  add_pooling_layer: false
+  config:
+    _target_: transformers.ViTConfig
+    query_num: 8
+    input_hidden_size: 1024
+    num_patches: 256  # include the [CLS] token
+    attention_probs_dropout_prob: 0.0
+    hidden_act: "gelu"
+    hidden_dropout_prob: 0.0
+    hidden_size: 768
+    initializer_range: 0.02
+    intermediate_size: 3072
+    layer_norm_eps: 1e-12
+    model_type: "vit"
+    num_attention_heads: 12
+    num_hidden_layers: 4
+    qkv_bias: true
+
+vector_quantizer:
+  _target_: policy_models.m_former.vector_quantizer.VectorQuantizer2
+  n_e: 128
+  e_dim: 32
+  beta: 0.25
+  remap: null
+  sane_index_shape: true

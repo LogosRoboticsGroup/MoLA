@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Editors
+.vscode/
+.idea/
+
+# Logs and experiment outputs
+logs/
+output/
+outputs/
+wandb/
+lightning_logs/
+video_output/
+*.log
+
+# Data and checkpoints
+data/
+datasets/
+checkpoints/
+ckpt/
+models/
+downloads/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.mp4
+*.webm
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
